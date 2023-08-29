@@ -1,10 +1,10 @@
-package com.sparta.memo;
+package com.sparta.board;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MemoApplicationTests {
+class BoardApplicationTests {
 
     @Test
     void contextLoads() {

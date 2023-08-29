@@ -1,9 +1,9 @@
-package com.sparta.memo.dto;
+package com.sparta.board.dto;
 
 import lombok.Getter;
 
 @Getter
-public class MemoRequestDto {
+public class BoardRequestDto {
     private String username;
     private String contents;
 }

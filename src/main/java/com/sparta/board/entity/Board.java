@@ -1,6 +1,6 @@
-package com.sparta.memo.entity;
+package com.sparta.board.entity;
 
-import com.sparta.memo.dto.MemoRequestDto;
+import com.sparta.board.dto.BoardRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @Table(name = "memo") // 매핑할 테이블의 이름을 지정
 @NoArgsConstructor
-public class Memo {
+public class Board extends Timestamped {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,12 +20,13 @@ public class Memo {
     @Column(name = "contents", nullable = false, length = 500)
     private String contents;
 
-    public Memo(MemoRequestDto requestDto) {
+
+    public Board(BoardRequestDto requestDto) {
         this.username = requestDto.getUsername();
         this.contents = requestDto.getContents();
     }
 
-    public void update(MemoRequestDto requestDto) {
+    public void update(BoardRequestDto requestDto) {
         this.username = requestDto.getUsername();
         this.contents = requestDto.getContents();
     }
