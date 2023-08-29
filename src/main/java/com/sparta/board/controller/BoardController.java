@@ -9,8 +9,8 @@ import java.util.List;
 @RequestMapping("/api")
 public class BoardController {
     private final BoardService boardService;
-    public BoardController(BoardService memoService) {
-        this.boardService = memoService;
+    public BoardController(BoardService boardService) {
+        this.boardService = boardService;
     }
     @PostMapping("/post")
     public BoardResponseDto createBoard(@RequestBody BoardRequestDto requestDto) {

@@ -15,12 +15,6 @@ public class BoardResponseDto {
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
 
-//    public MemoResponseDto(Long id, String username, String contents) {
-//        this.id = id;
-//        this.username = username;
-//        this.contents = contents;
-//    }
-
     public BoardResponseDto(Board board) {
         this.id = board.getId();
         this.username = board.getUsername();
@@ -30,6 +24,4 @@ public class BoardResponseDto {
 
     }
 
-//    public MemoResponseDto(Memo memo) {
-//    }
 }
