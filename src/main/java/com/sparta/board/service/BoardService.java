@@ -4,15 +4,17 @@ import com.sparta.board.dto.BoardRequestDto;
 import com.sparta.board.dto.BoardResponseDto;
 import com.sparta.board.entity.Board;
 import com.sparta.board.repository.BoardRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+
 public class BoardService {
     private final BoardRepository boardRepository;
-
+    @Autowired
     public BoardService(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
     }
@@ -37,25 +39,32 @@ public class BoardService {
     }
 
     @Transactional
-    public Long updateBoard(Long id, BoardRequestDto requestDto) {
+    public BoardResponseDto updateBoard(Long id, BoardRequestDto requestDto) {
 // 해당 메모가 DB에 존재하는지 확인
         Board board = findBoard(id);
+        if( requestDto.getPassword().equals(board.getPassword()) ){
+            board.update(requestDto);
+            return new BoardResponseDto(board);
+        }
+        else{
+            throw new IllegalArgumentException("비밀번호가 다릅니다.");
+        }
 // memo 내용 수정
-        board.update(requestDto);
-        return id;
     }
-
-    public Long deleteBoard(Long id) {
+    public BoardResponseDto deleteBoard(Long id, BoardRequestDto requestDto) {
 // 해당 메모가 DB에 존재하는지 확인
         Board board = findBoard(id);
 // memo 삭제
-        boardRepository.delete(board);
-        return id;
+        if( requestDto.getPassword().equals(board.getPassword()) ){
+            boardRepository.delete(board);
+            return new BoardResponseDto(board);
+        }
+        else{
+            throw new IllegalArgumentException("비밀번호가 다릅니다.");
+        }
     }
 
-    private Board findBoard(Long id) {
-        return boardRepository.findById(id).orElseThrow(() ->
-                new IllegalArgumentException("선택한 메모는 존재하지 않습니다.")
-        );
+    private Board findBoard (Long id) {
+        return boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("데이터가 없습니다."));
     }
 }

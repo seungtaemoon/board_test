@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class BoardResponseDto {
     private Long id;
+    private String title;
     private String username;
     private String contents;
     private LocalDateTime createdAt;
@@ -17,6 +18,7 @@ public class BoardResponseDto {
 
     public BoardResponseDto(Board board) {
         this.id = board.getId();
+        this.title = board.getTitle();
         this.username = board.getUsername();
         this.contents = board.getContents();
         this.createdAt = board.getCreatedAt();
