@@ -21,8 +21,8 @@ public class UserService {
 //        this.userRepository = userRepository;
 //    }
 
-    public UserResponseDto findUser(Long id, UserRequestDto requestDto) {
-        User user = findId(id);
+    public UserResponseDto findUser(Long userid, UserRequestDto requestDto) {
+        User user = findId(userid);
         if(requestDto.getUserid().equals(user.getUserid())){
             return new UserResponseDto(user);
         }
@@ -35,8 +35,8 @@ public class UserService {
         return userRepository.findAll().stream().map(UserResponseDto::new).toList();
     }
 
-    private User findId (Long id) {
-        return userRepository.findById(id).orElseThrow(() -> new NullPointerException("데이터가 없습니다."));
+    private User findId (Long userid) {
+        return userRepository.findById(userid).orElseThrow(() -> new NullPointerException("데이터가 없습니다."));
     }
 
 }

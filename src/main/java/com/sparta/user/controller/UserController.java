@@ -23,9 +23,9 @@ public class UserController {
      * 한 회원의 userId가 주었을때 회원 정보를 조회하는 API
      //@param id
      */
-    @GetMapping("/user/{id}")
-    public UserResponseDto getUserInfo(@PathVariable Long id, @RequestBody UserRequestDto requestDto) {
-        return userService.findUser(id, requestDto);
+    @GetMapping("/user/{userid}")
+    public UserResponseDto getUserInfo(@PathVariable Long userid, @RequestBody UserRequestDto requestDto) {
+        return userService.findUser(userid, requestDto);
     }
 
     /**

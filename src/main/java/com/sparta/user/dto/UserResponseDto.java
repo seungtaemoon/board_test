@@ -9,14 +9,12 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 public class UserResponseDto {
-    private Long id;
-    private String userid;
+    private Long userid;
     private String name;
     private String email;
     private String password;
 
     public UserResponseDto(User user) {
-        this.id = user.getId();
         this.userid = user.getUserid();
         this.name = user.getName();
         this.email = user.getEmail();
